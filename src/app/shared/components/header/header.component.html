@@ -1,0 +1,21 @@
+<mat-toolbar color="primary">
+  <ng-container *ngIf="isAdmin =='admin'">
+    <span>IPSFA</span>
+    <span class="example-spacer"></span>
+    <!-- <button mat-button *ngFor="let item of menu" [routerLink]="item.redirect">{{item.nombre}}</button> -->
+    <button mat-button routerLink="inicio">Inicio</button>
+   
+    <button mat-button routerLink="reportes">Reportes</button>
+    <span class="example-spacer"></span>
+ 
+  </ng-container>
+       <span class="spacer"></span>
+       <a *ngIf="!isLogged; else viewLogout"  mat-button routerLink="/login">Ingresar </a>
+      
+ </mat-toolbar>
+
+  <ng-template #viewLogout>
+    <a mat-button (click)="onLogout()">Salir</a>
+  </ng-template>
+
+

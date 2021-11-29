@@ -1,0 +1,117 @@
+<div class="col-12">
+  <select class="btn btn-light mb-2" name="lista_n" id="lista_n" [(ngModel)]="opcionSeleccionado" (change)="capturar()">
+      <option value="0">SELECCIONE</option>
+      <option value="{{dato.nomina}}/{{dato.desde}}/{{dato.hasta}}" *ngFor="let dato of allPostNeto">
+      {{dato.nomina}} / {{dato.desde}} al {{dato.hasta}}
+    </option>
+  </select>
+</div> 
+
+<div class="col-12 text-center">
+  <button class="btn btn-info mb-2" styleSheetFile="../node_modules/bootstrap/dist/css/bootstrap.min.css" [useExistingCss] = "true" printSectionId="print-section" ngxPrint>Descargar</button>
+</div>
+
+<div class="col-12 text-center">
+  <button (click)="recargar()">Recargar</button>
+</div>
+
+<div class="container-fluid mt-3" id="print-section" [hidden]="opcionSeleccionado == '0'">
+  <div class="card bg-light">
+    <div class="row">
+      <div class="col-3">
+        <img width="150" height="150" class="rounded-circle" src="../../../../../assets/img/img.png" alt="">
+      </div>
+      <div class="col-7 h4 mt-4">
+          REPÚBLICA BOLIVARIANA DE VENEZUELA <br>
+          MINISTERIO DEL PODER POPULAR PARA LA DEFENSA <br>
+          VICEMINISTRO DE SERVICIOS PARA LA DEFENSA <br>
+          DIRECCIÓN GENERAL DE EMPRESAS Y SERVICIOS <br>
+          FUERZA ARMADA NACIONAL BOLIVARIANA <br>
+          RIF: G20003694-3
+      </div>
+      <div class="col-12 h4 mb-5">
+        <b>TITULAR</b> <br>
+        <b>RECIBO DE PAGO DE PENSIÓN CORRESPONDIENTE A:</b> <br>
+        <b>{{allPostNomina.nomina}} / {{allPostNomina.mes}}</b> <br>
+        <b>PERIODO DESDE {{allPostNomina.desde}} AL {{allPostNomina.hasta}}</b>
+      </div>
+
+        <div class="col-1"></div>
+        <div class="col-3 h4 groove mb">
+          JERARQUIA <br>
+          <b> {{allGrado.descripcion}}</b>
+        </div>
+        <div class="col-4 h4 groove mb">
+          APELLIDOS Y NOMBRES <br>
+          <b>{{allPost2.apellidoprimero}}, {{allPost2.nombreprimero}}</b>
+        </div>
+        <div class="col-3 h4 groove mb">
+          CÉDULA DE IDENTIDAD <br>
+          <b>{{allPost2.nacionalidad}}-{{allPost.id}}</b>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div class="col-4 h4 groove mb">
+          COMPONENTE <br>
+          <b>{{allComponente.descripcion}}</b>
+        </div>
+        <div class="col-6 h4 groove mb">
+          <b>CUENTA BANCARIA</b><br>
+          {{cuenta}}
+        </div>
+
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+
+        <div class="col-10 mt-5">
+          <table id="customers">
+            <tr>
+              <th>CONCEPTOS</th>
+              <th>CALCULOS</th>
+              <th>ASIGNACIONES</th>
+              <th>DEDUCCIONES</th>
+            </tr>
+            <tr *ngFor="let f of conceptos4">
+                <td class="h4 s">{{f.concep}}</td>
+                <td class="r">
+                  <h4 class="h4 r" *ngIf="f.tipo == '97'">Bs. {{f.montos}}</h4>
+                  <h4 class="h4" *ngIf="f.tipo != '97'"></h4>
+                </td>
+                <td class="r">
+                  <h4 class="h4 r" *ngIf="f.tipo == '1'">Bs. {{f.montos}}</h4>
+                  <h4 class="h4" *ngIf="f.tipo != '1'"></h4>
+                </td>
+                <td class="r">
+                  <h4 class="h4 r" *ngIf="f.tipo == '0' || f.tipo == '3'">Bs. {{f.montos}}</h4>
+                  <h4 class="h4" *ngIf="f.tipo != '0'"></h4>
+                </td>
+            </tr>
+            <tr>
+              <td colspan="2" class="h4 r">TOTAL</td>
+              <td class="h4 r"> Bs.  {{conceptos1.asignaciones}}</td>
+              <td class="h4 r">Bs. {{conceptos1.deducciones}}</td>
+            </tr>
+          </table>
+          <div class="col-12 text-center t"><br><b>NETO A COBRAR</b> <br>
+            <b >Bs. {{allPostNomina.neto}}</b><br><br>
+          </div>
+        </div>
+        <div class="col-12 h6 mt-5">
+          <b>IPSFA EN CONTACTO</b>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-10 text-center t">
+          <br><br><br><br>
+        </div>
+        <div class="col-12 h6 mt-5">
+          <b>Dirección: Avenida Los Próceres Edif. Sede del IPSFA. Gerencia de Afiliación Planta Baja. Santa Mónica, municipio Libertador. Caracas, Distrito
+            Capital. Teléfonos: (0212) - 609-23-10 / 609-23-11 /609-23-12</b>
+        </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+  
+</script>
